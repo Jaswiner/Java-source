@@ -12,8 +12,7 @@
 <title>
   
     
-    
-    Docs
+    Unsafe
   
  | Java源代码解析</title>
 
@@ -25,7 +24,6 @@
 <link rel="icon" href="/source/java/favicon.png" type="image/x-icon">
 
 
-<link rel="alternate" type="application/rss+xml" href="http://jaswine.com/source/java/docs/index.xml" title="Java源代码解析" />
 <!--
 Made with Book Theme
 https://github.com/alex-shpak/hugo-book
@@ -52,7 +50,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   <style>
-  nav ul a[href$="\2fsource\2fjava\2f docs\2f "] {
+  nav ul a[href$="\2fsource\2fjava\2f docs\2f concurrent\2funsafe\2f "] {
       color: #004ed0;
   }
   </style>
@@ -128,14 +126,32 @@ https://github.com/alex-shpak/hugo-book
   <strong>
   
     
-    
-    Docs
+    Unsafe
   
 </strong>
 </header>
 
       
-<article class="markdown"></article>
+<article class="markdown">
+
+<h1 id="unsafe使用cas算法实现乐观锁">Unsafe使用CAS算法实现乐观锁</h1>
+
+<hr />
+
+<ul>
+<li>Java版本：1.8</li>
+</ul>
+
+<hr />
+
+<h1 id="引子">引子</h1>
+
+<p>实现乐观锁本质上就是先不加锁，然后在修改的时候看看原来的值变化来没有，如果没有那就修改，如果变了那就重新计算。<code>Java</code>中提供了<code>Unsafe</code>这个类来实现乐观锁，使用了CAS算法。</p>
+
+<p>在<code>J.U.C</code>包中的<code>Atomic</code>类底层就是使用Unsafe来完成原子化操作，但是<code>Unsafe</code>不光就这一个功能。</p>
+
+<h1 id="原理">原理</h1>
+</article>
 
       
 
@@ -144,6 +160,16 @@ https://github.com/alex-shpak/hugo-book
 
     
   
+
+  <aside class="book-toc level-3 fixed">
+    <nav id="TableOfContents">
+<ul>
+<li><a href="#unsafe使用cas算法实现乐观锁">Unsafe使用CAS算法实现乐观锁</a></li>
+<li><a href="#引子">引子</a></li>
+<li><a href="#原理">原理</a></li>
+</ul>
+</nav>
+  </aside>
 
 
 

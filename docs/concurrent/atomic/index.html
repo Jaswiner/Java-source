@@ -97,7 +97,14 @@ https://github.com/alex-shpak/hugo-book
 <li><p style="font-size:18px;color:#228B22">线程/并发</p>
 
 <ul>
+<li><a href="/source/java/docs/concurrent/volatile/">volatile是怎么保证线程间的可见性的</a></li>
 <li><a href="/source/java/docs/concurrent/atomic/">JUC中的原子类</a></li>
+</ul></li>
+
+<li><p style="font-size:18px;color:#228B22">Java中的设计模式</p>
+
+<ul>
+<li><a href="/source/java/docs/model/singleton/">单例模式</a></li>
 </ul></li>
 </ul>
 
@@ -125,7 +132,55 @@ https://github.com/alex-shpak/hugo-book
 </header>
 
       
-<article class="markdown"></article>
+<article class="markdown">
+
+<h1 id="原子类实现原理">原子类实现原理</h1>
+
+<hr />
+
+<ul>
+<li>Java版本：1.8</li>
+</ul>
+
+<hr />
+
+<h2 id="引子">引子</h2>
+
+<p><code>Java</code>的<code>J.U.C</code>包中有一个<code>atomic</code>包，包里的类都是线程安全的，对类的操作保证了操作的原子性。在多线程并发的情况下使用他们可以保证线程安全。来看看它实现的原理是什么。</p>
+
+<h2 id="原理">原理</h2>
+
+<p>我们以<code>AtomicInteger</code>来看，他的值就是<code>value</code>，声明方式如下：</p>
+
+<pre><code>    private volatile int value;
+</code></pre>
+
+<p>被<code>volatile</code>修饰，保证对<code>value</code>的操作都是可见的和有序的，关于<code>volatile</code>的原理可以看这篇文章&ndash;<a href="/source/java/docs/concurrent/volatile/">volatile实现的原理</a></p>
+
+<p>其中线程安全的方法主要如下</p>
+
+<ul>
+<li>accumulateAndGet(int x,IntBinaryOperator accumulatorFunction)</li>
+<li>getAndAccumulate(int x,IntBinaryOperator accumulatorFunction)</li>
+<li>addAndGet(int delta)</li>
+<li>getAndAdd(int delta)</li>
+<li>getAndUpdate(IntUnaryOperator updateFunction)</li>
+<li>updateAndGet(IntUnaryOperator updateFunction)</li>
+<li>decrementAndGet()</li>
+<li>incrementAndGet()</li>
+</ul>
+
+<p>我们去看源码的时候会发现有如下代码保证原子性操作</p>
+
+<pre><code class="language-java">    /** unsafe是Unsafe的实例 */
+    unsafe.getAndAddInt()
+
+    /** compareAndSet还是Unsafe的一个方法*/
+    while (!compareAndSet(prev, next));
+</code></pre>
+
+<p>所以原子类的实现底层原理就是<code>Unsafe</code>提供的，关于<code>Unsafe</code>看这篇文章&ndash;<a href="/source/java/docs/concurrent/unsafe/">Unsafe使用CAS算法实现乐观锁</a></p>
+</article>
 
       
 
@@ -134,6 +189,18 @@ https://github.com/alex-shpak/hugo-book
 
     
   
+
+  <aside class="book-toc level-3 fixed">
+    <nav id="TableOfContents">
+<ul>
+<li><a href="#原子类实现原理">原子类实现原理</a>
+<ul>
+<li><a href="#引子">引子</a></li>
+<li><a href="#原理">原理</a></li>
+</ul></li>
+</ul>
+</nav>
+  </aside>
 
 
 

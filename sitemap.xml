@@ -7,6 +7,14 @@
   </url>
   
   <url>
+    <loc>http://jaswine.com/source/java/docs/concurrent/unsafe/</loc>
+  </url>
+  
+  <url>
+    <loc>http://jaswine.com/source/java/docs/concurrent/volatile/</loc>
+  </url>
+  
+  <url>
     <loc>http://jaswine.com/source/java/docs/io/aio/base/</loc>
   </url>
   
@@ -32,6 +40,10 @@
   
   <url>
     <loc>http://jaswine.com/source/java/docs/map/hashmap/</loc>
+  </url>
+  
+  <url>
+    <loc>http://jaswine.com/source/java/docs/model/singleton/</loc>
   </url>
   
   <url>

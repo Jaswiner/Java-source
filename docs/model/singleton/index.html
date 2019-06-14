@@ -12,8 +12,7 @@
 <title>
   
     
-    
-    Docs
+    Singleton
   
  | Java源代码解析</title>
 
@@ -25,7 +24,6 @@
 <link rel="icon" href="/source/java/favicon.png" type="image/x-icon">
 
 
-<link rel="alternate" type="application/rss+xml" href="http://jaswine.com/source/java/docs/index.xml" title="Java源代码解析" />
 <!--
 Made with Book Theme
 https://github.com/alex-shpak/hugo-book
@@ -52,7 +50,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   <style>
-  nav ul a[href$="\2fsource\2fjava\2f docs\2f "] {
+  nav ul a[href$="\2fsource\2fjava\2f docs\2fmodel\2fsingleton\2f "] {
       color: #004ed0;
   }
   </style>
@@ -128,14 +126,59 @@ https://github.com/alex-shpak/hugo-book
   <strong>
   
     
-    
-    Docs
+    Singleton
   
 </strong>
 </header>
 
       
-<article class="markdown"></article>
+<article class="markdown">
+
+<h1 id="java中的单例模式">Java中的单例模式</h1>
+
+<hr />
+
+<ul>
+<li>Java版本：1.8</li>
+</ul>
+
+<hr />
+
+<h1 id="引子">引子</h1>
+
+<p>单例模式就是在整个<code>Java</code>程序(进程)中当前类只有一个实例，在全局使用的情况下只需要创建一个实例就好类，就不需要频繁的创建对象了。</p>
+
+<h1 id="实现">实现</h1>
+
+<ul>
+<li>构造函数私有(保证自己创建自己的实例)</li>
+<li>判断线程中是否有单例类的实例，如果有就返回，没有就创建</li>
+</ul>
+
+<h1 id="实例">实例</h1>
+
+<h2 id="unsafe单例类"><strong><em>Unsafe单例类</em></strong></h2>
+
+<p><code>Unsafe</code>是单例类，源代码如下</p>
+
+<pre><code class="language-java">public final class Unsafe {
+
+    private Unsafe() {}
+
+    @CallerSensitive
+    public static Unsafe getUnsafe() {
+        Class var0 = Reflection.getCallerClass();
+        if (!VM.isSystemDomainLoader(var0.getClassLoader())) {
+            throw new SecurityException(&quot;Unsafe&quot;);
+        } else {
+            return theUnsafe;
+        }
+    }
+}
+</code></pre>
+
+<h1 id="思考-为什么要用单例模式">思考-为什么要用单例模式</h1>
+</article>
 
       
 
@@ -144,6 +187,21 @@ https://github.com/alex-shpak/hugo-book
 
     
   
+
+  <aside class="book-toc level-3 fixed">
+    <nav id="TableOfContents">
+<ul>
+<li><a href="#java中的单例模式">Java中的单例模式</a></li>
+<li><a href="#引子">引子</a></li>
+<li><a href="#实现">实现</a></li>
+<li><a href="#实例">实例</a>
+<ul>
+<li><a href="#unsafe单例类"><strong><em>Unsafe单例类</em></strong></a></li>
+</ul></li>
+<li><a href="#思考-为什么要用单例模式">思考-为什么要用单例模式</a></li>
+</ul>
+</nav>
+  </aside>
 
 
 

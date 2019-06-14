@@ -16,7 +16,35 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>http://jaswine.com/source/java/docs/concurrent/atomic/</guid>
-      <description></description>
+      <description>原子类实现原理  Java版本：1.8  引子 Java的J.U.C包中有一个atomic包，包里的类都是线程安全的，对类的操作保证了操作的原子性。在多线程并发的情况下使用他们可以保证线程安全。来看看它实现的原理是什么。
+原理 我们以AtomicInteger来看，他的值就是value，声明方式如下：
+ private volatile int value;  被volatile修饰，保证对value的操作都是可见的和有序的，关于volatile的原理可以看这篇文章&amp;ndash;volatile实现的原理
+其中线程安全的方法主要如下
+ accumulateAndGet(int x,IntBinaryOperator accumulatorFunction) getAndAccumulate(int x,IntBinaryOperator accumulatorFunction) addAndGet(int delta) getAndAdd(int delta) getAndUpdate(IntUnaryOperator updateFunction) updateAndGet(IntUnaryOperator updateFunction) decrementAndGet() incrementAndGet()  我们去看源码的时候会发现有如下代码保证原子性操作
+/** unsafe是Unsafe的实例 */ unsafe.getAndAddInt() /** compareAndSet还是Unsafe的一个方法*/ while (!compareAndSet(prev, next));  所以原子类的实现底层原理就是Unsafe提供的，关于Unsafe看这篇文章&amp;ndash;Unsafe使用CAS算法实现乐观锁</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://jaswine.com/source/java/docs/concurrent/unsafe/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://jaswine.com/source/java/docs/concurrent/unsafe/</guid>
+      <description> Unsafe使用CAS算法实现乐观锁  Java版本：1.8  引子 实现乐观锁本质上就是先不加锁，然后在修改的时候看看原来的值变化来没有，如果没有那就修改，如果变了那就重新计算。Java中提供了Unsafe这个类来实现乐观锁，使用了CAS算法。
+在J.U.C包中的Atomic类底层就是使用Unsafe来完成原子化操作，但是Unsafe不光就这一个功能。
+原理 </description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://jaswine.com/source/java/docs/concurrent/volatile/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://jaswine.com/source/java/docs/concurrent/volatile/</guid>
+      <description> volatile是怎么保证线程间的可见性的  Java版本：1.8  引子 线程不安全的根本原因就是因为下面三个问题
+ 线程间的可见性 原子性 有序性  具体关于这三个问题的细节请参考这个// todo
+volatile可以保证可见性和有序性，还有单次读/写的原子性，但是不能保证原子性。多线程并发的原子性还需要通过锁去完成。
+原理 可见性实现原理  修改volatile修饰的变量的时候，强制将修改后的变量刷新到主存中 修改volatile修饰的变量后，其他线程对应的变量值失效要去主存中重新拉取  有序性实现原理 </description>
     </item>
     
     <item>
@@ -81,6 +109,17 @@
       <guid>http://jaswine.com/source/java/docs/map/hashmap/</guid>
       <description> Hashmap源码阅读  @Version：JDK 1.8 @Data：2019-06-12  引子 Hashmap是非常常用的一个Map类型的容器类，她有以下的特点：
    </description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://jaswine.com/source/java/docs/model/singleton/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://jaswine.com/source/java/docs/model/singleton/</guid>
+      <description> Java中的单例模式  Java版本：1.8  引子 单例模式就是在整个Java程序(进程)中当前类只有一个实例，在全局使用的情况下只需要创建一个实例就好类，就不需要频繁的创建对象了。
+实现  构造函数私有(保证自己创建自己的实例) 判断线程中是否有单例类的实例，如果有就返回，没有就创建  实例 Unsafe单例类 Unsafe是单例类，源代码如下
+public final class Unsafe { private Unsafe() {} @CallerSensitive public static Unsafe getUnsafe() { Class var0 = Reflection.getCallerClass(); if (!VM.isSystemDomainLoader(var0.getClassLoader())) { throw new SecurityException(&amp;quot;Unsafe&amp;quot;); } else { return theUnsafe; } } }  思考-为什么要用单例模式 </description>
     </item>
     
     <item>

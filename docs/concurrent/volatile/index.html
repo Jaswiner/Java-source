@@ -12,8 +12,7 @@
 <title>
   
     
-    
-    Docs
+    Volatile
   
  | Java源代码解析</title>
 
@@ -25,7 +24,6 @@
 <link rel="icon" href="/source/java/favicon.png" type="image/x-icon">
 
 
-<link rel="alternate" type="application/rss+xml" href="http://jaswine.com/source/java/docs/index.xml" title="Java源代码解析" />
 <!--
 Made with Book Theme
 https://github.com/alex-shpak/hugo-book
@@ -52,7 +50,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   <style>
-  nav ul a[href$="\2fsource\2fjava\2f docs\2f "] {
+  nav ul a[href$="\2fsource\2fjava\2f docs\2f concurrent\2fvolatile\2f "] {
       color: #004ed0;
   }
   </style>
@@ -128,14 +126,49 @@ https://github.com/alex-shpak/hugo-book
   <strong>
   
     
-    
-    Docs
+    Volatile
   
 </strong>
 </header>
 
       
-<article class="markdown"></article>
+<article class="markdown">
+
+<h1 id="volatile是怎么保证线程间的可见性的">volatile是怎么保证线程间的可见性的</h1>
+
+<hr />
+
+<ul>
+<li>Java版本：1.8</li>
+</ul>
+
+<hr />
+
+<h1 id="引子">引子</h1>
+
+<p>线程不安全的根本原因就是因为下面三个问题</p>
+
+<ul>
+<li>线程间的可见性</li>
+<li>原子性</li>
+<li>有序性</li>
+</ul>
+
+<p>具体关于这三个问题的细节请参考这个// todo</p>
+
+<p><code>volatile</code>可以保证可见性和有序性，还有单次读/写的原子性，但是不能保证原子性。多线程并发的原子性还需要通过锁去完成。</p>
+
+<h1 id="原理">原理</h1>
+
+<h2 id="可见性实现原理">可见性实现原理</h2>
+
+<ul>
+<li>修改volatile修饰的变量的时候，强制将修改后的变量刷新到主存中</li>
+<li>修改volatile修饰的变量后，其他线程对应的变量值失效要去主存中重新拉取</li>
+</ul>
+
+<h2 id="有序性实现原理">有序性实现原理</h2>
+</article>
 
       
 
@@ -144,6 +177,20 @@ https://github.com/alex-shpak/hugo-book
 
     
   
+
+  <aside class="book-toc level-3 fixed">
+    <nav id="TableOfContents">
+<ul>
+<li><a href="#volatile是怎么保证线程间的可见性的">volatile是怎么保证线程间的可见性的</a></li>
+<li><a href="#引子">引子</a></li>
+<li><a href="#原理">原理</a>
+<ul>
+<li><a href="#可见性实现原理">可见性实现原理</a></li>
+<li><a href="#有序性实现原理">有序性实现原理</a></li>
+</ul></li>
+</ul>
+</nav>
+  </aside>
 
 
 
