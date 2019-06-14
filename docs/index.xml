@@ -12,6 +12,43 @@
     
     <item>
       <title></title>
+      <link>http://jaswine.com/source/java/docs/collection/list/arraylist/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://jaswine.com/source/java/docs/collection/list/arraylist/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://jaswine.com/source/java/docs/collection/list/base/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://jaswine.com/source/java/docs/collection/list/base/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://jaswine.com/source/java/docs/collection/map/base/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://jaswine.com/source/java/docs/collection/map/base/</guid>
+      <description> Map系类架构 </description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://jaswine.com/source/java/docs/collection/map/hashmap/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://jaswine.com/source/java/docs/collection/map/hashmap/</guid>
+      <description> Hashmap源码阅读  @Version：JDK 1.8 @Data：2019-06-12  引子 Hashmap是非常常用的一个Map类型的容器类，她有以下的特点：
+   </description>
+    </item>
+    
+    <item>
+      <title></title>
       <link>http://jaswine.com/source/java/docs/concurrent/atomic/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -26,11 +63,25 @@
     
     <item>
       <title></title>
+      <link>http://jaswine.com/source/java/docs/concurrent/threadpool/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://jaswine.com/source/java/docs/concurrent/threadpool/</guid>
+      <description> Java中的线程池  Java版本：1.8  引子 线程的创建和销毁是重量级的开销，所有使用一个池子来装线程实例，但是线程池和普通的池化也不一样。
+传统的池化中，池充当的是消费-提供模式中的提供者，但是在线程池中，线程池充当的是消费者的角色。
+使用步骤 使用JDK定义的线程池实现 JDK中提供了四种线程池实现
+   名称 特点     newCachedThreadPool 可缓存线程池;线程超过池大小回收空闲线程;线程不够则创建线程   newFixedThreadPool 固定长度线程池;可以控制最大线程并发数,超过的在队列中等待   newSingleThreadScheduledExecutor 一个线程的线程池,保证所有任务按照一定顺序来执行   newScheduledThreadPool 定长的线程池,定时执行任务     Alibaba Java规范中不建议使用上面四种来实现，建议自己来定义线程池。
+  STEP 1.创建线程池  ExecutorService threadPool = Executors.newFixedThreadPool(3);   STEP 2.执行任务  threadPool.execute(new Runnable())  自定义线程池实现 通过自定义线程池，可以知道线程池实现的细节。Java中线程池类是ThreadPoolExecutor,他的构造函数中有如下的参数
+ corePoolSize(核心池大小) maximumPoolSize(线程池最大值) keepAliveTime, unit(时间) workQueue(等待队列) threadFactory(线程工厂类，线程生命周期管理) handler(拒绝策略)  </description>
+    </item>
+    
+    <item>
+      <title></title>
       <link>http://jaswine.com/source/java/docs/concurrent/unsafe/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>http://jaswine.com/source/java/docs/concurrent/unsafe/</guid>
-      <description> Unsafe使用CAS算法实现乐观锁  Java版本：1.8  引子 实现乐观锁本质上就是先不加锁，然后在修改的时候看看原来的值变化来没有，如果没有那就修改，如果变了那就重新计算。Java中提供了Unsafe这个类来实现乐观锁，使用了CAS算法。
+      <description> Unsafe使用CAS算法实现乐观锁  Java版本：1.8 参考：  Java魔法类:Unsafe应用解析    引子 实现乐观锁本质上就是先不加锁，然后在修改的时候看看原来的值变化来没有，如果没有那就修改，如果变了那就重新计算。Java中提供了Unsafe这个类来实现乐观锁，使用了CAS算法。
 在J.U.C包中的Atomic类底层就是使用Unsafe来完成原子化操作，但是Unsafe不光就这一个功能。
 原理 </description>
     </item>
@@ -76,39 +127,20 @@ volatile可以保证可见性和有序性，还有单次读/写的原子性，�
     
     <item>
       <title></title>
-      <link>http://jaswine.com/source/java/docs/list/arraylist/</link>
+      <link>http://jaswine.com/source/java/docs/lang/object/base/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://jaswine.com/source/java/docs/list/arraylist/</guid>
+      <guid>http://jaswine.com/source/java/docs/lang/object/base/</guid>
       <description></description>
     </item>
     
     <item>
       <title></title>
-      <link>http://jaswine.com/source/java/docs/list/base/</link>
+      <link>http://jaswine.com/source/java/docs/lang/string/base/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://jaswine.com/source/java/docs/list/base/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title></title>
-      <link>http://jaswine.com/source/java/docs/map/base/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>http://jaswine.com/source/java/docs/map/base/</guid>
-      <description> Map系类架构 </description>
-    </item>
-    
-    <item>
-      <title></title>
-      <link>http://jaswine.com/source/java/docs/map/hashmap/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>http://jaswine.com/source/java/docs/map/hashmap/</guid>
-      <description> Hashmap源码阅读  @Version：JDK 1.8 @Data：2019-06-12  引子 Hashmap是非常常用的一个Map类型的容器类，她有以下的特点：
-   </description>
+      <guid>http://jaswine.com/source/java/docs/lang/string/base/</guid>
+      <description>String家族 String是Java中最常见的类型，</description>
     </item>
     
     <item>
@@ -120,24 +152,6 @@ volatile可以保证可见性和有序性，还有单次读/写的原子性，�
       <description> Java中的单例模式  Java版本：1.8  引子 单例模式就是在整个Java程序(进程)中当前类只有一个实例，在全局使用的情况下只需要创建一个实例就好类，就不需要频繁的创建对象了。
 实现  构造函数私有(保证自己创建自己的实例) 判断线程中是否有单例类的实例，如果有就返回，没有就创建  实例 Unsafe单例类 Unsafe是单例类，源代码如下
 public final class Unsafe { private Unsafe() {} @CallerSensitive public static Unsafe getUnsafe() { Class var0 = Reflection.getCallerClass(); if (!VM.isSystemDomainLoader(var0.getClassLoader())) { throw new SecurityException(&amp;quot;Unsafe&amp;quot;); } else { return theUnsafe; } } }  思考-为什么要用单例模式 </description>
-    </item>
-    
-    <item>
-      <title></title>
-      <link>http://jaswine.com/source/java/docs/object/base/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>http://jaswine.com/source/java/docs/object/base/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title></title>
-      <link>http://jaswine.com/source/java/docs/string/base/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>http://jaswine.com/source/java/docs/string/base/</guid>
-      <description>String家族 String是Java中最常见的类型，</description>
     </item>
     
   </channel>

@@ -12,7 +12,7 @@
 <title>
   
     
-    Base
+    Threadpool
   
  | Java源代码解析</title>
 
@@ -50,7 +50,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   <style>
-  nav ul a[href$="\2fsource\2fjava\2f docs\2fio\2f bio\2f base\2f "] {
+  nav ul a[href$="\2fsource\2fjava\2f docs\2f concurrent\2fthreadpool\2f "] {
       color: #004ed0;
   }
   </style>
@@ -128,13 +128,101 @@ https://github.com/alex-shpak/hugo-book
   <strong>
   
     
-    Base
+    Threadpool
   
 </strong>
 </header>
 
       
-<article class="markdown"></article>
+<article class="markdown">
+
+<h1 id="java中的线程池">Java中的线程池</h1>
+
+<hr />
+
+<ul>
+<li>Java版本：1.8</li>
+</ul>
+
+<hr />
+
+<h2 id="引子">引子</h2>
+
+<p>线程的创建和销毁是重量级的开销，所有使用一个池子来装线程实例，但是线程池和普通的池化也不一样。</p>
+
+<p>传统的池化中，池充当的是<code>消费-提供</code>模式中的提供者，但是在线程池中，线程池充当的是消费者的角色。</p>
+
+<h2 id="使用步骤">使用步骤</h2>
+
+<h3 id="使用jdk定义的线程池实现">使用JDK定义的线程池实现</h3>
+
+<p><code>JDK</code>中提供了四种线程池实现</p>
+
+<table>
+<thead>
+<tr>
+<th align="left">名称</th>
+<th align="left">特点</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="left">newCachedThreadPool</td>
+<td align="left">可缓存线程池;线程超过池大小回收空闲线程;线程不够则创建线程</td>
+</tr>
+
+<tr>
+<td align="left">newFixedThreadPool</td>
+<td align="left">固定长度线程池;可以控制最大线程并发数,超过的在队列中等待</td>
+</tr>
+
+<tr>
+<td align="left">newSingleThreadScheduledExecutor</td>
+<td align="left">一个线程的线程池,保证所有任务按照一定顺序来执行</td>
+</tr>
+
+<tr>
+<td align="left">newScheduledThreadPool</td>
+<td align="left">定长的线程池,定时执行任务</td>
+</tr>
+</tbody>
+</table>
+
+<hr />
+
+<blockquote>
+<p><a href="https://github.com/alibaba/p3c/blob/master/%E9%98%BF%E9%87%8C%E5%B7%B4%E5%B7%B4Java%E5%BC%80%E5%8F%91%E6%89%8B%E5%86%8C%EF%BC%88%E8%AF%A6%E5%B0%BD%E7%89%88%EF%BC%89.pdf">Alibaba Java规范</a>中不建议使用上面四种来实现，建议自己来定义线程池。</p>
+</blockquote>
+
+<ul>
+<li>STEP 1.创建线程池</li>
+</ul>
+
+<pre><code class="language-java">ExecutorService threadPool = Executors.newFixedThreadPool(3);
+</code></pre>
+
+<ul>
+<li>STEP 2.执行任务</li>
+</ul>
+
+<pre><code class="language-java">threadPool.execute(new Runnable())
+</code></pre>
+
+<h3 id="自定义线程池实现">自定义线程池实现</h3>
+
+<p>通过自定义线程池，可以知道线程池实现的细节。<code>Java</code>中线程池类是<code>ThreadPoolExecutor</code>,他的构造函数中有如下的参数</p>
+
+<ul>
+<li>corePoolSize(核心池大小)</li>
+<li>maximumPoolSize(线程池最大值)</li>
+<li>keepAliveTime,</li>
+<li>unit(时间)</li>
+<li>workQueue(等待队列)</li>
+<li>threadFactory(线程工厂类，线程生命周期管理)</li>
+<li>handler(拒绝策略)</li>
+</ul>
+</article>
 
       
 
@@ -143,6 +231,22 @@ https://github.com/alex-shpak/hugo-book
 
     
   
+
+  <aside class="book-toc level-3 fixed">
+    <nav id="TableOfContents">
+<ul>
+<li><a href="#java中的线程池">Java中的线程池</a>
+<ul>
+<li><a href="#引子">引子</a></li>
+<li><a href="#使用步骤">使用步骤</a>
+<ul>
+<li><a href="#使用jdk定义的线程池实现">使用JDK定义的线程池实现</a></li>
+<li><a href="#自定义线程池实现">自定义线程池实现</a></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
+  </aside>
 
 
 

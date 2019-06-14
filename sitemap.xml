@@ -3,7 +3,27 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>http://jaswine.com/source/java/docs/collection/list/arraylist/</loc>
+  </url>
+  
+  <url>
+    <loc>http://jaswine.com/source/java/docs/collection/list/base/</loc>
+  </url>
+  
+  <url>
+    <loc>http://jaswine.com/source/java/docs/collection/map/base/</loc>
+  </url>
+  
+  <url>
+    <loc>http://jaswine.com/source/java/docs/collection/map/hashmap/</loc>
+  </url>
+  
+  <url>
     <loc>http://jaswine.com/source/java/docs/concurrent/atomic/</loc>
+  </url>
+  
+  <url>
+    <loc>http://jaswine.com/source/java/docs/concurrent/threadpool/</loc>
   </url>
   
   <url>
@@ -27,31 +47,15 @@
   </url>
   
   <url>
-    <loc>http://jaswine.com/source/java/docs/list/arraylist/</loc>
+    <loc>http://jaswine.com/source/java/docs/lang/object/base/</loc>
   </url>
   
   <url>
-    <loc>http://jaswine.com/source/java/docs/list/base/</loc>
-  </url>
-  
-  <url>
-    <loc>http://jaswine.com/source/java/docs/map/base/</loc>
-  </url>
-  
-  <url>
-    <loc>http://jaswine.com/source/java/docs/map/hashmap/</loc>
+    <loc>http://jaswine.com/source/java/docs/lang/string/base/</loc>
   </url>
   
   <url>
     <loc>http://jaswine.com/source/java/docs/model/singleton/</loc>
-  </url>
-  
-  <url>
-    <loc>http://jaswine.com/source/java/docs/object/base/</loc>
-  </url>
-  
-  <url>
-    <loc>http://jaswine.com/source/java/docs/string/base/</loc>
   </url>
   
   <url>
