@@ -12,7 +12,7 @@
 <title>
   
     
-    Hashmap
+    Concurrenthashmap
   
  | Java源代码解析</title>
 
@@ -50,7 +50,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   <style>
-  nav ul a[href$="\2fsource\2fjava\2f docs\2f collection\2fmap\2fhashmap\2f "] {
+  nav ul a[href$="\2fsource\2fjava\2f docs\2f collection\2fmap\2f concurrenthashmap\2f "] {
       color: #004ed0;
   }
   </style>
@@ -128,7 +128,7 @@ https://github.com/alex-shpak/hugo-book
   <strong>
   
     
-    Hashmap
+    Concurrenthashmap
   
 </strong>
 </header>
@@ -136,85 +136,15 @@ https://github.com/alex-shpak/hugo-book
       
 <article class="markdown">
 
-<h1 id="hashmap源码阅读">Hashmap源码阅读</h1>
+<h1 id="concurrenthashmap源码">ConcurrentHashmap源码</h1>
 
 <hr />
 
 <ul>
-<li>@Version：JDK 1.8</li>
-<li>@Data：2019-06-12</li>
+<li>Java版本：1.8</li>
 </ul>
 
 <hr />
-
-<p><code>HashMap</code>底层的数据结构就是一个<code>Node[]</code>，这个<code>Node</code>本质上就是一个<code>&lt;K,V&gt;</code>对,还是一个单链表结构</p>
-
-<pre><code>Node&lt;k,v&gt; next;
-</code></pre>
-
-<p>同时还有一个红黑树结构的<code>TreeNode</code></p>
-
-<h2 id="put-线程不安全的">put(线程不安全的)</h2>
-
-<h3 id="流程图">流程图</h3>
-
-<p><img src="https://cdn.jaswine.com/source/java/collection/hashmap.png" style="width:777px" ></p>
-
-<h3 id="看源代码">看源代码</h3>
-
-<p><img src="https://cdn.jaswine.com/source/java/collection/hashmap/put.png" style="width:777px" ></p>
-
-<p>调用了<code>putVal()</code>方法，这个方法看下源码</p>
-
-<p><img src="https://cdn.jaswine.com/source/java/collection/hashmap/putval.png" style="width:777px" ></p>
-
-<p>其中有几个重要的变量</p>
-
-<ul>
-<li>TREEIFY_THRESHOLD : 链表转化成红黑树的判断值(大小为8)</li>
-<li>loadFactor : 负载因子，大小默认为0.75，可以调节</li>
-<li>threshold : hash表容量大小，为负载因子*hash表的size</li>
-</ul>
-
-<p>还有两个很重要的方法</p>
-
-<ul>
-<li>hash(int hashcode) : 计算索引值</li>
-<li>resize() : 扩容</li>
-</ul>
-
-<p>其中<code>hash()</code>在 <code>JDK1.7</code>和<code>JDK1.8</code>有区别</p>
-
-<ul>
-<li><strong>1.7中hash源代码</strong></li>
-</ul>
-
-<pre><code class="language-java">
-static int hash(int h) {
-    // This function ensures that hashCodes that differ only by
-    // constant multiples at each bit position have a bounded
-    // number of collisions (approximately 8 at default load factor).
-
-    h ^= (h &gt;&gt;&gt; 20) ^ (h &gt;&gt;&gt; 12);
-    return h ^ (h &gt;&gt;&gt; 7) ^ (h &gt;&gt;&gt; 4);
-}
-</code></pre>
-
-<ul>
-<li><strong>1.8中的hash</strong></li>
-</ul>
-
-<pre><code class="language-java"> static final int hash(Object key) {
-    int h;
-    return (key == null) ? 0 : (h = key.hashCode()) ^ (h &gt;&gt;&gt; 16);
-}
-</code></pre>
-
-<p>相比1.7中，1.8的hash()更加的简洁，只需要经过一次右移运算和一次位或运算。</p>
-
-<h3 id="为什么线程不安全">为什么线程不安全</h3>
-
-<p>线程不安全是因为在扩容的时候链表生成了环。</p>
 </article>
 
       
@@ -228,15 +158,7 @@ static int hash(int h) {
   <aside class="book-toc level-3 fixed">
     <nav id="TableOfContents">
 <ul>
-<li><a href="#hashmap源码阅读">Hashmap源码阅读</a>
-<ul>
-<li><a href="#put-线程不安全的">put(线程不安全的)</a>
-<ul>
-<li><a href="#流程图">流程图</a></li>
-<li><a href="#看源代码">看源代码</a></li>
-<li><a href="#为什么线程不安全">为什么线程不安全</a></li>
-</ul></li>
-</ul></li>
+<li><a href="#concurrenthashmap源码">ConcurrentHashmap源码</a></li>
 </ul>
 </nav>
   </aside>

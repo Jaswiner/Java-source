@@ -39,12 +39,26 @@
     
     <item>
       <title></title>
+      <link>http://jaswine.com/source/java/docs/collection/map/concurrenthashmap/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://jaswine.com/source/java/docs/collection/map/concurrenthashmap/</guid>
+      <description> ConcurrentHashmap源码  Java版本：1.8  </description>
+    </item>
+    
+    <item>
+      <title></title>
       <link>http://jaswine.com/source/java/docs/collection/map/hashmap/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>http://jaswine.com/source/java/docs/collection/map/hashmap/</guid>
-      <description> Hashmap源码阅读  @Version：JDK 1.8 @Data：2019-06-12  引子 Hashmap是非常常用的一个Map类型的容器类，她有以下的特点：
-   </description>
+      <description>Hashmap源码阅读  @Version：JDK 1.8 @Data：2019-06-12  HashMap底层的数据结构就是一个Node[]，这个Node本质上就是一个&amp;lt;K,V&amp;gt;对,还是一个单链表结构
+Node&amp;lt;k,v&amp;gt; next;  同时还有一个红黑树结构的TreeNode
+put(线程不安全的) 流程图 看源代码 调用了putVal()方法，这个方法看下源码
+其中有几个重要的变量
+ TREEIFY_THRESHOLD : 链表转化成红黑树的判断值(大小为8) loadFactor : 负载因子，大小默认为0.75，可以调节 threshold : hash表容量大小，为负载因子*hash表的size  还有两个很重要的方法
+ hash(int hashcode) : 计算索引值 resize() : 扩容  其中hash()在 JDK1.7和JDK1.8有区别
+ 1.7中hash源代码  static int hash(int h) { // This function ensures that hashCodes that differ only by // constant multiples at each bit position have a bounded // number of collisions (approximately 8 at default load factor).</description>
     </item>
     
     <item>
