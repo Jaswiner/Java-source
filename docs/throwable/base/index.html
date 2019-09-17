@@ -50,7 +50,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   <style>
-  nav ul a[href$="\2fsource\2fjava\2f docs\2fio\2f bio\2f base\2f "] {
+  nav ul a[href$="\2fsource\2fjava\2f docs\2fthrowable\2f base\2f "] {
       color: #004ed0;
   }
   </style>
@@ -152,7 +152,18 @@ https://github.com/alex-shpak/hugo-book
 </header>
 
       
-<article class="markdown"></article>
+<article class="markdown">
+
+<h1 id="java异常体系概述">Java异常体系概述</h1>
+
+<p>Java中的Exception和Error都继承了Throwable类，可以被throw和catch。</p>
+
+<p>Exception正常运行中可能会出现的意外情况，可以被捕获和处理的。</p>
+
+<p>Error在正常状态下不会出现的错误，非正常和不可恢复的状态。比如出现的OOM(内存溢出)就是Error。</p>
+
+<p>Exception氛围可检(checked)和不检查异常(unchecked)。可检exception可以在编译期的时候检查出来，不受检的exception就是我们通常所说的运行时异常，比如NPE(空指针异常)。</p>
+</article>
 
       
 
@@ -161,6 +172,14 @@ https://github.com/alex-shpak/hugo-book
 
     
   
+
+  <aside class="book-toc level-3 fixed">
+    <nav id="TableOfContents">
+<ul>
+<li><a href="#java异常体系概述">Java异常体系概述</a></li>
+</ul>
+</nav>
+  </aside>
 
 
 

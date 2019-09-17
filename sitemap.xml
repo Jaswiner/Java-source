@@ -4,62 +4,92 @@
   
   <url>
     <loc>http://jaswine.com/source/java/docs/collection/list/arraylist/</loc>
+    <priority>0</priority>
   </url>
   
   <url>
     <loc>http://jaswine.com/source/java/docs/collection/list/base/</loc>
+    <priority>0</priority>
   </url>
   
   <url>
     <loc>http://jaswine.com/source/java/docs/collection/map/base/</loc>
+    <priority>0</priority>
   </url>
   
   <url>
     <loc>http://jaswine.com/source/java/docs/collection/map/concurrenthashmap/</loc>
+    <priority>0</priority>
   </url>
   
   <url>
     <loc>http://jaswine.com/source/java/docs/collection/map/hashmap/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://jaswine.com/source/java/docs/collection/queue/base/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://jaswine.com/source/java/docs/collection/set/base/</loc>
+    <priority>0</priority>
   </url>
   
   <url>
     <loc>http://jaswine.com/source/java/docs/concurrent/atomic/</loc>
+    <priority>0</priority>
   </url>
   
   <url>
     <loc>http://jaswine.com/source/java/docs/concurrent/threadpool/</loc>
+    <priority>0</priority>
   </url>
   
   <url>
     <loc>http://jaswine.com/source/java/docs/concurrent/unsafe/</loc>
+    <priority>0</priority>
   </url>
   
   <url>
     <loc>http://jaswine.com/source/java/docs/concurrent/volatile/</loc>
+    <priority>0</priority>
   </url>
   
   <url>
     <loc>http://jaswine.com/source/java/docs/io/aio/base/</loc>
+    <priority>0</priority>
   </url>
   
   <url>
     <loc>http://jaswine.com/source/java/docs/io/bio/base/</loc>
+    <priority>0</priority>
   </url>
   
   <url>
     <loc>http://jaswine.com/source/java/docs/io/nio/base/</loc>
+    <priority>0</priority>
   </url>
   
   <url>
     <loc>http://jaswine.com/source/java/docs/lang/object/base/</loc>
+    <priority>0</priority>
   </url>
   
   <url>
     <loc>http://jaswine.com/source/java/docs/lang/string/base/</loc>
+    <priority>0</priority>
   </url>
   
   <url>
     <loc>http://jaswine.com/source/java/docs/model/singleton/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://jaswine.com/source/java/docs/throwable/base/</loc>
+    <priority>0</priority>
   </url>
   
   <url>

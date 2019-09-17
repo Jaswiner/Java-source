@@ -63,6 +63,24 @@ put(线程不安全的) 流程图 看源代码 调用了putVal()方法，这个�
     
     <item>
       <title></title>
+      <link>http://jaswine.com/source/java/docs/collection/queue/base/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://jaswine.com/source/java/docs/collection/queue/base/</guid>
+      <description> Queue系类架构 </description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://jaswine.com/source/java/docs/collection/set/base/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://jaswine.com/source/java/docs/collection/set/base/</guid>
+      <description> Set系类架构 </description>
+    </item>
+    
+    <item>
+      <title></title>
       <link>http://jaswine.com/source/java/docs/concurrent/atomic/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -145,7 +163,15 @@ volatile可以保证可见性和有序性，还有单次读/写的原子性，�
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>http://jaswine.com/source/java/docs/lang/object/base/</guid>
-      <description></description>
+      <description>Object源码  @Version: Oracle JDK 1.8
+ Object是所有类的超类，默认继承。所以其中所有的方法和变量(不是private和final修饰的)都被继承。方法和变量有
+ registerNatives()[p] getClass() hashCode() equals() clone toString notify() notifyAll() wait() finalize()  其中registerNatives()是private修饰的，其他都是被继承的。
+registerNatives() 他是一个native方法，作用就是注册本地方法，他是一个私有的方法，并且在类初始化的时候就会执行这个方法
+static { registerNatives(); }  会将native方法注册进来。hashcode(),clone()这些方法都是native修饰的，都需要registerNatives()注册进来。
+getClass() 返回当前对象的引用类Class&amp;lt;?&amp;gt;
+hashcode() 返回当前对象的hashcode()，每一个对象的hashcode都是不一样的
+equals() equals()的源代码如下
+public boolean equals(Object obj) { return (this == obj); }  本质上还是==</description>
     </item>
     
     <item>
@@ -154,7 +180,10 @@ volatile可以保证可见性和有序性，还有单次读/写的原子性，�
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>http://jaswine.com/source/java/docs/lang/string/base/</guid>
-      <description>String家族 String是Java中最常见的类型，</description>
+      <description> String家族  @Version : Oracle JDK 1.8
+ String是Java中最常见的类型，我们常常看到就是下面三个类：
+ String StringBuffer StringBuilder  分析这三个可以完全把他们放在一起来说。说说他们的异同
+    String StringBuffer StringBuilder     父类 / AbstractStringBuilder AbstractStringBuilder   线程安全 NO YES NO   本质 char数组 char数组 char数组    </description>
     </item>
     
     <item>
@@ -166,6 +195,18 @@ volatile可以保证可见性和有序性，还有单次读/写的原子性，�
       <description> Java中的单例模式  Java版本：1.8  引子 单例模式就是在整个Java程序(进程)中当前类只有一个实例，在全局使用的情况下只需要创建一个实例就好类，就不需要频繁的创建对象了。
 实现  构造函数私有(保证自己创建自己的实例) 判断线程中是否有单例类的实例，如果有就返回，没有就创建  实例 Unsafe单例类 Unsafe是单例类，源代码如下
 public final class Unsafe { private Unsafe() {} @CallerSensitive public static Unsafe getUnsafe() { Class var0 = Reflection.getCallerClass(); if (!VM.isSystemDomainLoader(var0.getClassLoader())) { throw new SecurityException(&amp;quot;Unsafe&amp;quot;); } else { return theUnsafe; } } }  思考-为什么要用单例模式 </description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://jaswine.com/source/java/docs/throwable/base/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://jaswine.com/source/java/docs/throwable/base/</guid>
+      <description>Java异常体系概述 Java中的Exception和Error都继承了Throwable类，可以被throw和catch。
+Exception正常运行中可能会出现的意外情况，可以被捕获和处理的。
+Error在正常状态下不会出现的错误，非正常和不可恢复的状态。比如出现的OOM(内存溢出)就是Error。
+Exception氛围可检(checked)和不检查异常(unchecked)。可检exception可以在编译期的时候检查出来，不受检的exception就是我们通常所说的运行时异常，比如NPE(空指针异常)。</description>
     </item>
     
   </channel>

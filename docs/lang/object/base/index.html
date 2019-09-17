@@ -69,29 +69,47 @@ https://github.com/alex-shpak/hugo-book
 <li><a href="/source/java/docs/io/nio/base/"><strong>NIO</strong></a></li>
 <li><a href="/source/java/docs/io/aio/base/"><strong>NIO2/AIO</strong></a></li>
 </ul></li>
-
 <li><p style="font-size:18px;color:#228B22">集合</p>
 
 <ul>
 <li><a href="/source/java/docs/collection/list/base/"><strong>List系</strong></a>
 
 <ul>
-<li><a href="/source/java/docs/collection/list/arraylist/">ArrayList的数据增删改查</a></li>
-<li><a href="/source/java/docs/collection/list/arraylist/">LinkedList的数据增删改查</a></li>
+<li><a href="/source/java/docs/collection/list/arraylist/">ArrayList源码</a></li>
+<li><a href="/source/java/docs/collection/list/arraylist/">Vector源码</a></li>
+<li><a href="/source/java/docs/collection/list/arraylist/">LinkedList源码</a></li>
 <li><a href="/source/java/docs/collection/list/arraylist/">List实现类的异同比较</a></li>
-<li><a href="#">线程安全的CopyOnWriteArrayList</a></li>
+<li><a href="#">CopyOnWriteArrayList源码</a></li>
 </ul></li>
+<li><a href="#"><strong>Queue系</strong></a>
 
-<li><p><a href="#"><strong>Queue系</strong></a></p></li>
+<ul>
+<li><a href="#">BlockingQueue源码</a></li>
+<li><a href="#">LinkedBlockingQueue源码</a></li>
+<li><a href="#">ArrayBlockingQueue源码</a></li>
+<li><a href="#">PriorityBlockingQueue源码</a></li>
+</ul></li>
+<li><a href="#"><strong>Set系</strong></a>
 
-<li><p><a href="#"><strong>Set系</strong></a></p></li>
-
-<li><p><a href="/source/java/docs/collection/map/base/"><strong>Map系</strong></a></p>
+<ul>
+<li><a href="#">SortedSet源码</a></li>
+<li><a href="#">HashSet源码</a></li>
+<li><a href="#">TreeSet源码</a></li>
+<li><a href="#">CopyOnWriteArraySet源码</a></li>
+</ul></li>
+<li><a href="/source/java/docs/collection/map/base/"><strong>Map系</strong></a>
 
 <ul>
 <li><a href="/source/java/docs/collection/map/hashmap/">Hashmap源码阅读</a></li>
-<li><a href="#">线程安全的ConcurrentHashMap</a></li>
+<li><a href="#">ConcurrentHashMap源码阅读</a></li>
 </ul></li>
+</ul></li>
+<li><p style="font-size:18px;color:#228B22">异常处理</p>
+
+<ul>
+<li><a href="/source/java/docs/throwable/base/"><strong>概述</strong></a></li>
+<li><strong>Error</strong></li>
+<li><strong>Exception</strong></li>
 </ul></li>
 
 <li><p style="font-size:18px;color:#228B22">线程/并发</p>
@@ -134,7 +152,61 @@ https://github.com/alex-shpak/hugo-book
 </header>
 
       
-<article class="markdown"></article>
+<article class="markdown">
+
+<h1 id="object源码">Object源码</h1>
+
+<blockquote>
+<p>@Version: Oracle JDK 1.8</p>
+</blockquote>
+
+<p><code>Object</code>是所有类的超类，默认继承。所以其中所有的方法和变量(不是private和final修饰的)都被继承。方法和变量有</p>
+
+<ul>
+<li>registerNatives()[p]</li>
+<li>getClass()</li>
+<li>hashCode()</li>
+<li>equals()</li>
+<li>clone</li>
+<li>toString</li>
+<li>notify()</li>
+<li>notifyAll()</li>
+<li>wait()</li>
+<li>finalize()</li>
+</ul>
+
+<p>其中<code>registerNatives()</code>是<code>private</code>修饰的，其他都是被继承的。</p>
+
+<h2 id="registernatives">registerNatives()</h2>
+
+<p>他是一个native方法，作用就是注册本地方法，他是一个私有的方法，并且在类初始化的时候就会执行这个方法</p>
+
+<pre><code class="language-java">static {
+    registerNatives();
+}
+</code></pre>
+
+<p>会将native方法注册进来。<code>hashcode()</code>,<code>clone()</code>这些方法都是native修饰的，都需要<code>registerNatives()</code>注册进来。</p>
+
+<h2 id="getclass">getClass()</h2>
+
+<p>返回当前对象的引用类<code>Class&lt;?&gt;</code></p>
+
+<h2 id="hashcode">hashcode()</h2>
+
+<p>返回当前对象的hashcode()，每一个对象的hashcode都是不一样的</p>
+
+<h2 id="equals">equals()</h2>
+
+<p>equals()的源代码如下</p>
+
+<pre><code class="language-java">public boolean equals(Object obj) {
+    return (this == obj);
+}
+</code></pre>
+
+<p>本质上还是<code>==</code></p>
+</article>
 
       
 
@@ -143,6 +215,20 @@ https://github.com/alex-shpak/hugo-book
 
     
   
+
+  <aside class="book-toc level-3 fixed">
+    <nav id="TableOfContents">
+<ul>
+<li><a href="#object源码">Object源码</a>
+<ul>
+<li><a href="#registernatives">registerNatives()</a></li>
+<li><a href="#getclass">getClass()</a></li>
+<li><a href="#hashcode">hashcode()</a></li>
+<li><a href="#equals">equals()</a></li>
+</ul></li>
+</ul>
+</nav>
+  </aside>
 
 
 

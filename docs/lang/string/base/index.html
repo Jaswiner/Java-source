@@ -69,29 +69,47 @@ https://github.com/alex-shpak/hugo-book
 <li><a href="/source/java/docs/io/nio/base/"><strong>NIO</strong></a></li>
 <li><a href="/source/java/docs/io/aio/base/"><strong>NIO2/AIO</strong></a></li>
 </ul></li>
-
 <li><p style="font-size:18px;color:#228B22">集合</p>
 
 <ul>
 <li><a href="/source/java/docs/collection/list/base/"><strong>List系</strong></a>
 
 <ul>
-<li><a href="/source/java/docs/collection/list/arraylist/">ArrayList的数据增删改查</a></li>
-<li><a href="/source/java/docs/collection/list/arraylist/">LinkedList的数据增删改查</a></li>
+<li><a href="/source/java/docs/collection/list/arraylist/">ArrayList源码</a></li>
+<li><a href="/source/java/docs/collection/list/arraylist/">Vector源码</a></li>
+<li><a href="/source/java/docs/collection/list/arraylist/">LinkedList源码</a></li>
 <li><a href="/source/java/docs/collection/list/arraylist/">List实现类的异同比较</a></li>
-<li><a href="#">线程安全的CopyOnWriteArrayList</a></li>
+<li><a href="#">CopyOnWriteArrayList源码</a></li>
 </ul></li>
+<li><a href="#"><strong>Queue系</strong></a>
 
-<li><p><a href="#"><strong>Queue系</strong></a></p></li>
+<ul>
+<li><a href="#">BlockingQueue源码</a></li>
+<li><a href="#">LinkedBlockingQueue源码</a></li>
+<li><a href="#">ArrayBlockingQueue源码</a></li>
+<li><a href="#">PriorityBlockingQueue源码</a></li>
+</ul></li>
+<li><a href="#"><strong>Set系</strong></a>
 
-<li><p><a href="#"><strong>Set系</strong></a></p></li>
-
-<li><p><a href="/source/java/docs/collection/map/base/"><strong>Map系</strong></a></p>
+<ul>
+<li><a href="#">SortedSet源码</a></li>
+<li><a href="#">HashSet源码</a></li>
+<li><a href="#">TreeSet源码</a></li>
+<li><a href="#">CopyOnWriteArraySet源码</a></li>
+</ul></li>
+<li><a href="/source/java/docs/collection/map/base/"><strong>Map系</strong></a>
 
 <ul>
 <li><a href="/source/java/docs/collection/map/hashmap/">Hashmap源码阅读</a></li>
-<li><a href="#">线程安全的ConcurrentHashMap</a></li>
+<li><a href="#">ConcurrentHashMap源码阅读</a></li>
 </ul></li>
+</ul></li>
+<li><p style="font-size:18px;color:#228B22">异常处理</p>
+
+<ul>
+<li><a href="/source/java/docs/throwable/base/"><strong>概述</strong></a></li>
+<li><strong>Error</strong></li>
+<li><strong>Exception</strong></li>
 </ul></li>
 
 <li><p style="font-size:18px;color:#228B22">线程/并发</p>
@@ -138,7 +156,53 @@ https://github.com/alex-shpak/hugo-book
 
 <h1 id="string家族">String家族</h1>
 
-<p><code>String</code>是<code>Java</code>中最常见的类型，</p>
+<blockquote>
+<p>@Version : Oracle JDK 1.8</p>
+</blockquote>
+
+<p><code>String</code>是<code>Java</code>中最常见的类型，我们常常看到就是下面三个类：</p>
+
+<ul>
+<li>String</li>
+<li>StringBuffer</li>
+<li>StringBuilder</li>
+</ul>
+
+<p>分析这三个可以完全把他们放在一起来说。说说他们的异同</p>
+
+<table>
+<thead>
+<tr>
+<th align="left"></th>
+<th align="left">String</th>
+<th align="left">StringBuffer</th>
+<th align="left">StringBuilder</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="left">父类</td>
+<td align="left">/</td>
+<td align="left">AbstractStringBuilder</td>
+<td align="left">AbstractStringBuilder</td>
+</tr>
+
+<tr>
+<td align="left">线程安全</td>
+<td align="left">NO</td>
+<td align="left">YES</td>
+<td align="left">NO</td>
+</tr>
+
+<tr>
+<td align="left">本质</td>
+<td align="left">char数组</td>
+<td align="left">char数组</td>
+<td align="left">char数组</td>
+</tr>
+</tbody>
+</table>
 </article>
 
       
