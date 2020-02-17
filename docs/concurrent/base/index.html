@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+
+
+
+
+
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  
+    
+    Base
+  
+ | Java源代码解析</title>
+
+
+
+<link rel="stylesheet" href="/source/java/book.min.b7d5ee4f671b06dde5fd61ab409a54048ba7759e99fed39ac32a7be45d4d92cd.css">
+
+
+<link rel="icon" href="/source/java/favicon.png" type="image/x-icon">
+
+
+<!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+
+  
+</head>
+
+<body>
+  <input type="checkbox" style="display: none" id="menu-control" />
+  <main class="flex container">
+
+    <aside class="book-menu fixed">
+      <nav>
+<h2 class="book-brand">
+  <a href="http://jaswine.com/source/java">Java源代码解析</a>
+</h2>
+
+
+
+    
+  
+  
+  
+
+  <style>
+  nav ul a[href$="\2fsource\2fjava\2f docs\2f concurrent\2f base\2f "] {
+      color: #004ed0;
+  }
+  </style>
+
+<ul>
+<li><strong><em>Java各版本新特性</em></strong>
+
+<ul>
+<li><a href="/source/java/docs/features/java5/">Java5</a></li>
+<li><a href="/source/java/docs/features/java6/">Java6</a></li>
+<li><a href="/source/java/docs/features/java7/">Java7</a></li>
+<li><a href="/source/java/docs/features/java8/">Java8</a></li>
+<li><a href="/source/java/docs/features/java9/">Java9</a></li>
+<li><a href="/source/java/docs/features/java10/">Java10</a></li>
+<li><a href="/source/java/docs/features/java11/">Java11</a></li>
+<li><a href="/source/java/docs/features/java12/">Java12</a></li>
+<li><a href="/source/java/docs/features/java13/">Java13</a></li>
+</ul></li>
+<li><strong><em>Java特性</em></strong>
+
+<ul>
+<li><a href="/source/java/docs/item/base_type/">8大基础类型及其包装类</a></li>
+<li><a href="/source/java/docs/item/compute/">逻辑运算</a></li>
+<li><a href="/source/java/docs/item/generic/">范型</a></li>
+<li><a href="/source/java/docs/item/enum/">枚举</a></li>
+<li><a href="/source/java/docs/item/annotation/">注解</a></li>
+<li><a href="/source/java/docs/features/java13/">逻辑运算</a></li>
+<li><a href="/source/java/docs/features/java13/">逻辑运算</a></li>
+</ul></li>
+<li><strong><em>Java基础类</em></strong>
+
+<ul>
+<li><a href="/source/java/docs/lang/object/base/">Object超类</a></li>
+</ul></li>
+<li><strong><em>String家族</em></strong>
+
+<ul>
+<li><a href="/source/java/docs/lang/string/base/">String</a></li>
+<li><a href="/source/java/docs/lang/string/base/">StringBuilder</a></li>
+<li><a href="/source/java/docs/lang/string/base/">StringBuffer</a></li>
+</ul></li>
+<li><strong><em>I/O和文件</em></strong>
+
+<ul>
+<li><a href="/source/java/docs/io/base/">IO概述</a></li>
+<li><a href="/source/java/docs/io/bio/base/">BIO</a></li>
+<li><a href="/source/java/docs/io/nio/base/">NIO</a></li>
+<li><a href="/source/java/docs/io/aio/base/">NIO2/AIO</a><br /></li>
+</ul></li>
+<li><strong><em>集合</em></strong>
+
+<ul>
+<li><a href="/source/java/docs/collection/list/base/"><strong>List系</strong></a>
+
+<ul>
+<li><a href="/source/java/docs/collection/list/arraylist/">ArrayList源码</a></li>
+<li><a href="/source/java/docs/collection/list/vector/">Vector源码</a></li>
+<li><a href="/source/java/docs/collection/list/linkedlist/">LinkedList源码</a></li>
+<li><a href="/source/java/docs/collection/list/copyonwritearraylist/">CopyOnWriteArrayList源码</a></li>
+</ul></li>
+<li><a href="#">Queue系</a>
+
+<ul>
+<li><a href="#">BlockingQueue源码</a></li>
+<li><a href="#">LinkedBlockingQueue源码</a></li>
+<li><a href="#">ArrayBlockingQueue源码</a></li>
+<li><a href="#">PriorityBlockingQueue源码</a></li>
+</ul></li>
+<li><a href="#">Set系</a>
+
+<ul>
+<li><a href="#">SortedSet源码</a></li>
+<li><a href="#">HashSet源码</a></li>
+<li><a href="#">TreeSet源码</a></li>
+<li><a href="#">CopyOnWriteArraySet源码</a></li>
+</ul></li>
+<li><a href="/source/java/docs/collection/map/base/">Map系</a>
+
+<ul>
+<li><a href="/source/java/docs/collection/map/hashmap/">Hashmap源码阅读</a></li>
+<li><a href="#">ConcurrentHashMap源码阅读</a></li>
+</ul></li>
+</ul></li>
+<li><strong><em>异常处理</em></strong>
+
+<ul>
+<li><a href="/source/java/docs/throwable/base/">概述</a></li>
+<li><strong>Error</strong></li>
+<li><strong>Exception</strong></li>
+</ul></li>
+
+<li><p><strong><em>线程/并发</em></strong></p>
+
+<ul>
+<li><a href="/source/java/docs/concurrent/base/">概述</a></li>
+<li><a href="/source/java/docs/concurrent/volatile/">volatile原理</a></li>
+<li><a href="/source/java/docs/concurrent/synchronized/">synchronized原理</a></li>
+<li><a href="/source/java/docs/concurrent/atomic/">JUC中的原子类</a></li>
+<li><a href="/source/java/docs/concurrent/unsafe/">Unsafe魔法类</a></li>
+<li><a href="/source/java/docs/concurrent/threadpool/">Java中的线程池</a></li>
+</ul></li>
+
+<li><p><strong><em>Java中的设计模式</em></strong></p>
+
+<ul>
+<li><a href="/source/java/docs/model/singleton/">单例模式</a></li>
+</ul></li>
+</ul>
+
+
+
+
+
+</nav>
+
+
+
+    </aside>
+
+    <div class="book-page">
+      <header class="align-center justify-between book-header">
+  <label for="menu-control">
+    <img src="/source/java/svg/menu.svg" alt="Menu" />
+  </label>
+  <strong>
+  
+    
+    Base
+  
+</strong>
+</header>
+
+      
+<article class="markdown">
+
+<h1 id="并发编程概述">并发编程概述</h1>
+
+<h2 id="java并发编程中的几个术语">Java并发编程中的几个术语</h2>
+
+<ul>
+<li><strong><em>并发</em></strong>:多个任务交替执行</li>
+<li><strong><em>并行</em></strong>:多个任务同时执行</li>
+<li><strong><em>进程</em></strong>:CPU资源分配的最小单元</li>
+<li><strong><em>线程</em></strong>:CPU调度的最小单元</li>
+</ul>
+
+<h2 id="白话并发编程">白话并发编程</h2>
+
+<p>Java是一门高级的编程语言，我们写好的程序编译class文件后拉到虚拟机中去执行，虚拟机最终干的活就是将相关的任务(指令)委托给操作系统的完成，所有的程序在操作系统中就是一个进程，没有执行的二进制文件只是文件，只有被CPU翻了牌子才有资格成为进程。</p>
+
+<p>看我们写的代码的运行，从java文件到class文件又到二进制可执行文件最后才变成一个个高低电位被执行完成。从虚拟机到操作系统再到CPU等一系列的硬件，每一层都发挥自己的作用，越底层的东西我们越感知不到，因为底层已经帮我们完成了。</p>
+
+<p>准确来说不是Java实现了多线程，而是操作系统，cpu支持多线程这样的技术。Java只是封装了底层的东西，提供最简单的API给我们开发调用，只要</p>
+
+<pre><code class="language-java">Thread t = new Thread();
+</code></pre>
+
+<p>就可以开启一个区别于主线程的线程。</p>
+
+<p>所以要看透Java的并发编程(多线程)还是要知道底层对于多线程是怎么设计的。</p>
+
+<h2 id="为什么会有并发">为什么会有并发</h2>
+
+<p>我们的程序(二进制文件)想要运行起来，首先咱们的CPU(每一个物理核)是并发的执行指令的，一会执行这个进程的程序，一会执行另一个进程的程序。CPU调度的是线程，进程是操作系统的概念，一个进程中有大于一个的线程。当某一个进程被执行的时候就是OS将软件概念中的线程推给CPU去执行了。这样线程的切换导致我们以为很多程序在同时的运行，其实只是因为CPU执行指令太快，导致我们有这种错觉。</p>
+
+<p>那为什么要设计线程并发的执行呢，我们假如线程CPU是单核单线程的，现在有一个IO的操作，众所周知，IO是非常耗时间的操作，无论是从网卡，磁盘，还是内存上装载/卸载数据都是非常耗时的，但是如果线程并发执行的话，可以一会来进行IO操作，一会进行其他的操作，在我们使用者看来就是程序不至于卡死，不会因为在考文件我就不能听歌了。</p>
+
+<h2 id="cpu中的线程和os-java中的线程概念之间的差别">CPU中的线程和OS、Java中的线程概念之间的差别</h2>
+
+<p>我们买CPU的时候，会看到CPU中有一个参数叫做<strong>四核八线程</strong>，在Java中我们也有线程的概念。按照上面说的，Java只是对下层的抽象概念进行了封装，当我们写下</p>
+
+<pre><code class="language-java">Thread t = new Thread(){
+
+    public void run(){
+        System.out.print(&quot;Jaswine&quot;);
+    }
+}
+
+t.start();
+</code></pre>
+
+<p>的时候，我们只是创建了一个“任务”，这个“任务”会被加载到CPU的线程中去执行。</p>
+
+<p>用一个比喻来说，CPU的线程像是一个工人，一个CPU有八线程说明他有8个工人;Java或者说软件中的线程指的是任务，原本一个Java程序只有一个线程，只要一个工人就能做，现在我新建线程的时候说明可以多个工人来认领我这个任务了，因为这个设计以及CPU工人工作的方式带来各种个样的问题。</p>
+
+<h2 id="并发带来了什么问题">并发带来了什么问题</h2>
+
+<p>每个任务不一样，用一个比喻来说吧。</p>
+
+<p>我们去吃饭，点完菜发现点了5个菜，我们有两厨师，一块来烧吧。抽象一下，</p>
+
+<p>5个菜我们当做是一个HashSet吧，有五个元素</p>
+
+<pre><code class="language-java">Set&lt;Food&gt; foods = new HashSet&lt;&gt;();
+
+foods.size = 5;
+</code></pre>
+
+<p>我们厨师相当于CPU的线程吧，我们现在开启一个做菜的多线程，让厨师来做菜，本质上就是对这个foods变量进行操作。</p>
+
+<pre><code class="language-java">Thread t = new Thread(){
+
+    public void run(){
+        System.out.println(&quot;我是厨师:&quot;+Thread.currentThread().getName());
+        foods.add()
+    }
+}
+</code></pre>
+
+<h2 id="为什么会有这样的问题">为什么会有这样的问题</h2>
+
+<p>出现这样的问题要找到本质的问题。这个就和计算机运行的原理有关系了。</p>
+
+<p>那上面的程序来说。流程就是按照菜单做</p>
+
+<h2 id="怎么解决这些问题">怎么解决这些问题</h2>
+
+<p>底层硬件是修改不了的，那只能上层软件来解决这样的问题。</p>
+
+<ul>
+<li><strong>原子性</strong>: 因为CPU的线程切换的原因,当前线程执行到一半可能切换到别的线程导致数据错误</li>
+<li><strong>可见性</strong>: 线程切换的原因,一个变量被多个线程修改的时候,一个线程修改对于另外的线程不可见</li>
+<li><strong>有序性</strong>: 因为代码编译和CPU指令编排的时候发生了重排序的情况导致数据错误</li>
+</ul>
+
+<p>问题的本质上就是这三个问题，对应这三个问题去解决就OK了，无论是Java程序还是别的程序(如数据库系统)，高并发的情况都是因为这些问题，所以解决问题的思路是一样的，但是由于使用的语言的不同，所以看起来可能不同。</p>
+
+<p>Java的解决方案如下：</p>
+
+<ul>
+<li><strong>原子性:</strong> 锁</li>
+<li><strong>可见性:</strong> volatile</li>
+<li><strong>有序性:</strong> volatile、锁</li>
+</ul>
+
+<p>但是这和Java内存模型(JMM)都息息相关。</p>
+</article>
+
+      
+
+      
+    </div>
+
+    
+  
+
+  <aside class="book-toc level-3 fixed">
+    <nav id="TableOfContents">
+<ul>
+<li><a href="#并发编程概述">并发编程概述</a>
+<ul>
+<li><a href="#java并发编程中的几个术语">Java并发编程中的几个术语</a></li>
+<li><a href="#白话并发编程">白话并发编程</a></li>
+<li><a href="#为什么会有并发">为什么会有并发</a></li>
+<li><a href="#cpu中的线程和os-java中的线程概念之间的差别">CPU中的线程和OS、Java中的线程概念之间的差别</a></li>
+<li><a href="#并发带来了什么问题">并发带来了什么问题</a></li>
+<li><a href="#为什么会有这样的问题">为什么会有这样的问题</a></li>
+<li><a href="#怎么解决这些问题">怎么解决这些问题</a></li>
+</ul></li>
+</ul>
+</nav>
+  </aside>
+
+
+
+  </main>
+  
+  
+  
+</body>
+
+</html>

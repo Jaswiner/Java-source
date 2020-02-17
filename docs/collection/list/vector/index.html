@@ -12,7 +12,7 @@
 <title>
   
     
-    Volatile
+    Vector
   
  | Java源代码解析</title>
 
@@ -50,7 +50,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   <style>
-  nav ul a[href$="\2fsource\2fjava\2f docs\2f concurrent\2fvolatile\2f "] {
+  nav ul a[href$="\2fsource\2fjava\2f docs\2f collection\2flist\2fvector\2f "] {
       color: #004ed0;
   }
   </style>
@@ -178,7 +178,7 @@ https://github.com/alex-shpak/hugo-book
   <strong>
   
     
-    Volatile
+    Vector
   
 </strong>
 </header>
@@ -186,75 +186,54 @@ https://github.com/alex-shpak/hugo-book
       
 <article class="markdown">
 
-<h1 id="volatile原理">volatile原理</h1>
+<h1 id="vector源码分析">Vector源码分析</h1>
 
 <hr />
 
-<ul>
-<li>Java版本：1.8</li>
-</ul>
+<p><strong>Java版本:</strong>1.8</p>
 
 <hr />
 
-<h1 id="引子">引子</h1>
+<h2 id="vector底层数据结构">Vector底层数据结构</h2>
 
-<p>在<a href="/source/java/docs/concurrent/base/">前面这个文章</a>中总结了线程不安全的根本原因就是因为下面三个问题</p>
+<p>同<code>ArrayList</code>相同，<code>Vector</code>底层数据结构都是数组</p>
 
-<ul>
-<li>可见性</li>
-<li>原子性</li>
-<li>有序性</li>
-</ul>
+<blockquote>
+<p>🔗<strong><a href="https://jaswine.com/docs/algo/array">数据结构-数组</a></strong></p>
+</blockquote>
 
-<p><code>volatile</code>可以保证可见性和有序性，还有单次读/写的原子性，但是不能保证原子性。多线程并发的原子性还需要通过锁去完成。</p>
+<pre><code class="language-java">
+protected Object[] elementData;
 
-<h2 id="volatile是怎么做到的">volatile是怎么做到的</h2>
+public Vector(int initialCapacity, int capacityIncrement) {
+    super();
+    if (initialCapacity &lt; 0)
+        throw new IllegalArgumentException(&quot;Illegal Capacity: &quot;+
+                                            initialCapacity);
+    this.elementData = new Object[initialCapacity];
+    this.capacityIncrement = capacityIncrement;
+}
 
-<p><strong>线程可见性:</strong></p>
+</code></pre>
 
-<p>在前面我们知道线程之前不可见主要是因为线程A对于变量k的修改没有刷新到主存中就失去了CPU的使用权，线程B执行程序的时候需要变量k便会去主存中load进来，此时变量k不是最新的，随后线程A执行的时候将k值写进去，但是这时候变量k已经是脏数据了。</p>
+<h2 id="vector与arraylist异同">Vector与ArrayList异同</h2>
 
-<p>使用volatile关键字修饰变量k，在多线程访问k的时候就可以避免这样的问题。</p>
+<p><code>Vector</code>和<code>ArrayList</code>都是相同的底层数据结构，连方法名透视相同的，他们之间的区别只是线程是否安全上的区别。</p>
 
-<p>原理如下：</p>
+<blockquote>
+<p>Vector是线程安全的
+ArrayList是线程不安全的</p>
+</blockquote>
 
-<ul>
-<li>修改volatile修饰的变量的时候，强制将修改后的变量刷新到主存中</li>
-<li>修改volatile修饰的变量后，其他线程对应的变量值失效要去主存中重新拉取</li>
-</ul>
+<h2 id="vector是怎么实现线程安全的">Vector是怎么实现线程安全的</h2>
 
-<p><strong>线程有序性:</strong></p>
+<p><code>Vector</code>实现线程安全的方法是把线程不安全的方法上加上了<code>synchronized</code>关键字，保证了操作的原子性。</p>
 
-<p>有序性的根本原因还是因为指令重排，所以使用volatile关键字直接告诉编译器和cpu在执行代码的时候禁止指令重排。</p>
+<p>关于<code>synchronized</code>关键字的原理见下:</p>
 
-<h2 id="技术实现细节">技术实现细节</h2>
-
-<p>volatile这么好用，可以解决线程间可见性和有序性的问题。但是不是你说解决就解决的一定有相关的科学道理在背后，所以要看下volatile技术背后的科学道理。</p>
-
-<p>volatile是关键字，所以她的特性是由虚拟机帮我们完成</p>
-
-<p><strong>关键词:</strong></p>
-
-<ul>
-<li><span style="color:red;"><strong>内存屏障</strong></span></li>
-</ul>
-
-<p>“观察加入volatile关键字和没有加入volatile关键字时所生成的汇编代码发现，加入volatile关键字时，会多出一个lock前缀指令”</p>
-
-<p>　　lock前缀指令实际上相当于一个内存屏障（也成内存栅栏），内存屏障会提供3个功能：</p>
-
-<p>　　1）它确保指令重排序时不会把其后面的指令排到内存屏障之前的位置，也不会把前面的指令排到内存屏障的后面；即在执行到内存屏障这句指令时，在它前面的操作已经全部完成；</p>
-
-<p>　　2）它会强制将对缓存的修改操作立即写入主存；</p>
-
-<p>　　3）如果是写操作，它会导致其他CPU中对应的缓存行无效。</p>
-
-<h2 id="使用volatile的场景">使用volatile的场景</h2>
-
-<ul>
-<li>状态标记量(被多个线程[任务]访问，所以要最新的)</li>
-<li>双重检查(double check)</li>
-</ul>
+<blockquote>
+<p>🔗<strong><a href="/source/java/docs/concurrent/synchronized/">synchronized原理</a></strong></p>
+</blockquote>
 </article>
 
       
@@ -268,12 +247,11 @@ https://github.com/alex-shpak/hugo-book
   <aside class="book-toc level-3 fixed">
     <nav id="TableOfContents">
 <ul>
-<li><a href="#volatile原理">volatile原理</a></li>
-<li><a href="#引子">引子</a>
+<li><a href="#vector源码分析">Vector源码分析</a>
 <ul>
-<li><a href="#volatile是怎么做到的">volatile是怎么做到的</a></li>
-<li><a href="#技术实现细节">技术实现细节</a></li>
-<li><a href="#使用volatile的场景">使用volatile的场景</a></li>
+<li><a href="#vector底层数据结构">Vector底层数据结构</a></li>
+<li><a href="#vector与arraylist异同">Vector与ArrayList异同</a></li>
+<li><a href="#vector是怎么实现线程安全的">Vector是怎么实现线程安全的</a></li>
 </ul></li>
 </ul>
 </nav>

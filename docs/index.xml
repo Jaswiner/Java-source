@@ -16,7 +16,11 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>http://jaswine.com/source/java/docs/collection/list/arraylist/</guid>
-      <description></description>
+      <description>ArrayList源码分析 Java版本:1.8
+ArrayList底层数据结构 ArrayList的底层数据结构是数组。
+ 🔗数据结构-数组
+ transient Object[] elementData; // non-private to simplify nested class access public ArrayList(int initialCapacity) { if (initialCapacity &amp;gt; 0) { this.elementData = new Object[initialCapacity]; } else if (initialCapacity == 0) { this.elementData = EMPTY_ELEMENTDATA; } else { throw new IllegalArgumentException(&amp;quot;Illegal Capacity: &amp;quot;+ initialCapacity); } }  ArrayList是如何动态扩容的 数组在声明的时候就是定长的，所以当数组满了的情况下要对数组进行扩容，因为数组在内存上分布是连续的，所以Java中动态扩容就是申请原来数组长度两倍的空间，然后将老数组的数据复制到新数组中。
+ 源代码中扩容两倍使用的位移运算符，效率高，值得学习  private void grow(int minCapacity) { // overflow-conscious code int oldCapacity = elementData.length; int newCapacity = oldCapacity + (oldCapacity &amp;gt;&amp;gt; 1); if (newCapacity - minCapacity &amp;lt; 0) newCapacity = minCapacity; if (newCapacity - MAX_ARRAY_SIZE &amp;gt; 0) newCapacity = hugeCapacity(minCapacity); // minCapacity is usually close to size, so this is a win: elementData = Arrays.</description>
     </item>
     
     <item>
@@ -26,6 +30,45 @@
       
       <guid>http://jaswine.com/source/java/docs/collection/list/base/</guid>
       <description></description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://jaswine.com/source/java/docs/collection/list/copyonwritearraylist/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://jaswine.com/source/java/docs/collection/list/copyonwritearraylist/</guid>
+      <description>CopyOnWriteArrayList源码分析 Java版本:1.8</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://jaswine.com/source/java/docs/collection/list/linkedlist/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://jaswine.com/source/java/docs/collection/list/linkedlist/</guid>
+      <description> LinkedList源码分析 Java版本:1.8
+LinkedList底层数据结构 LinkedList底层数据结构是双向链表
+ 🔗数据结构-链表
+ private static class Node&amp;lt;E&amp;gt; { E item; Node&amp;lt;E&amp;gt; next; Node&amp;lt;E&amp;gt; prev; Node(Node&amp;lt;E&amp;gt; prev, E element, Node&amp;lt;E&amp;gt; next) { this.item = element; this.next = next; this.prev = prev; } }  LinkedList和ArrayList异同 因为LinkedList和ArrayList底层数据结构的不同，也就是容器不同，所以他们之间的不同主要就是数据结构之间的不同
+ ArrayList存放在一块连续的内存上，LinkedList存放在分散的内存块上 ArrayList存在容量不够动态扩容的问题，LinkedList不会有这个问题，除非出现OOM的情况才会没有内存使用  LinkedList为什么线程不安全 </description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://jaswine.com/source/java/docs/collection/list/vector/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://jaswine.com/source/java/docs/collection/list/vector/</guid>
+      <description> Vector源码分析 Java版本:1.8
+Vector底层数据结构 同ArrayList相同，Vector底层数据结构都是数组
+ 🔗数据结构-数组
+ protected Object[] elementData; public Vector(int initialCapacity, int capacityIncrement) { super(); if (initialCapacity &amp;lt; 0) throw new IllegalArgumentException(&amp;quot;Illegal Capacity: &amp;quot;+ initialCapacity); this.elementData = new Object[initialCapacity]; this.capacityIncrement = capacityIncrement; }  Vector与ArrayList异同 Vector和ArrayList都是相同的底层数据结构，连方法名透视相同的，他们之间的区别只是线程是否安全上的区别。
+ Vector是线程安全的 ArrayList是线程不安全的
+ Vector是怎么实现线程安全的 Vector实现线程安全的方法是把线程不安全的方法上加上了synchronized关键字，保证了操作的原子性。
+关于synchronized关键字的原理见下:
+ 🔗synchronized原理
+ </description>
     </item>
     
     <item>
@@ -95,6 +138,46 @@ put(线程不安全的) 流程图 看源代码 调用了putVal()方法，这个�
     
     <item>
       <title></title>
+      <link>http://jaswine.com/source/java/docs/concurrent/base/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://jaswine.com/source/java/docs/concurrent/base/</guid>
+      <description>并发编程概述 Java并发编程中的几个术语  并发:多个任务交替执行 并行:多个任务同时执行 进程:CPU资源分配的最小单元 线程:CPU调度的最小单元  白话并发编程 Java是一门高级的编程语言，我们写好的程序编译class文件后拉到虚拟机中去执行，虚拟机最终干的活就是将相关的任务(指令)委托给操作系统的完成，所有的程序在操作系统中就是一个进程，没有执行的二进制文件只是文件，只有被CPU翻了牌子才有资格成为进程。
+看我们写的代码的运行，从java文件到class文件又到二进制可执行文件最后才变成一个个高低电位被执行完成。从虚拟机到操作系统再到CPU等一系列的硬件，每一层都发挥自己的作用，越底层的东西我们越感知不到，因为底层已经帮我们完成了。
+准确来说不是Java实现了多线程，而是操作系统，cpu支持多线程这样的技术。Java只是封装了底层的东西，提供最简单的API给我们开发调用，只要
+Thread t = new Thread();  就可以开启一个区别于主线程的线程。
+所以要看透Java的并发编程(多线程)还是要知道底层对于多线程是怎么设计的。
+为什么会有并发 我们的程序(二进制文件)想要运行起来，首先咱们的CPU(每一个物理核)是并发的执行指令的，一会执行这个进程的程序，一会执行另一个进程的程序。CPU调度的是线程，进程是操作系统的概念，一个进程中有大于一个的线程。当某一个进程被执行的时候就是OS将软件概念中的线程推给CPU去执行了。这样线程的切换导致我们以为很多程序在同时的运行，其实只是因为CPU执行指令太快，导致我们有这种错觉。
+那为什么要设计线程并发的执行呢，我们假如线程CPU是单核单线程的，现在有一个IO的操作，众所周知，IO是非常耗时间的操作，无论是从网卡，磁盘，还是内存上装载/卸载数据都是非常耗时的，但是如果线程并发执行的话，可以一会来进行IO操作，一会进行其他的操作，在我们使用者看来就是程序不至于卡死，不会因为在考文件我就不能听歌了。
+CPU中的线程和OS、Java中的线程概念之间的差别 我们买CPU的时候，会看到CPU中有一个参数叫做四核八线程，在Java中我们也有线程的概念。按照上面说的，Java只是对下层的抽象概念进行了封装，当我们写下
+Thread t = new Thread(){ public void run(){ System.out.print(&amp;quot;Jaswine&amp;quot;); } } t.start();  的时候，我们只是创建了一个“任务”，这个“任务”会被加载到CPU的线程中去执行。
+用一个比喻来说，CPU的线程像是一个工人，一个CPU有八线程说明他有8个工人;Java或者说软件中的线程指的是任务，原本一个Java程序只有一个线程，只要一个工人就能做，现在我新建线程的时候说明可以多个工人来认领我这个任务了，因为这个设计以及CPU工人工作的方式带来各种个样的问题。
+并发带来了什么问题 每个任务不一样，用一个比喻来说吧。
+我们去吃饭，点完菜发现点了5个菜，我们有两厨师，一块来烧吧。抽象一下，
+5个菜我们当做是一个HashSet吧，有五个元素
+Set&amp;lt;Food&amp;gt; foods = new HashSet&amp;lt;&amp;gt;(); foods.size = 5;  我们厨师相当于CPU的线程吧，我们现在开启一个做菜的多线程，让厨师来做菜，本质上就是对这个foods变量进行操作。
+Thread t = new Thread(){ public void run(){ System.out.println(&amp;quot;我是厨师:&amp;quot;+Thread.currentThread().getName()); foods.add() } }  为什么会有这样的问题 出现这样的问题要找到本质的问题。这个就和计算机运行的原理有关系了。</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://jaswine.com/source/java/docs/concurrent/synchronized/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://jaswine.com/source/java/docs/concurrent/synchronized/</guid>
+      <description>synchronized原理  Java版本: 1.8  synchronized是Java提供的关键字，他可以保证代码在多线程的情况下同步执行,可以解决应为并发带来的指令执行原子性的问题。他的功能都是由虚拟机完成的。
+先说一个小例子来做比喻：
+我们到医院就医，很多人去看病，抽象成为代码如下：
+public class Hospital{ private Doctor doctor; public void treatment(Patient patient){ boolean canTreate = doctor.treatment(patient); if(canTreate){ System.out.println(&amp;quot;i can&amp;quot;); }else{ System.out.println(&amp;quot;change hospital&amp;quot;); } } }  这里极端一点，这个医院只有一个医生。然后医院提供治疗的方法，这个方法最后是医生去完成，然后根据医生的结果告知患者下一步怎么办。
+我们在现实生活中，医生依据患者的特征来完成诊断，得出这个
+synchronized synchronized 保持程序执行原子性是依靠了管程技术。和wait(),notify(),notifyall()一起使用。
+并发编程本质上就是在多个线程执行的时候保持线程互斥和同步。
+互斥 互斥的解决很简单，就是将共享变量及其操作统一封装。
+同步 协调</description>
+    </item>
+    
+    <item>
+      <title></title>
       <link>http://jaswine.com/source/java/docs/concurrent/threadpool/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -124,10 +207,108 @@ put(线程不安全的) 流程图 看源代码 调用了putVal()方法，这个�
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>http://jaswine.com/source/java/docs/concurrent/volatile/</guid>
-      <description> volatile是怎么保证线程间的可见性的  Java版本：1.8  引子 线程不安全的根本原因就是因为下面三个问题
- 线程间的可见性 原子性 有序性  具体关于这三个问题的细节请参考这个// todo
-volatile可以保证可见性和有序性，还有单次读/写的原子性，但是不能保证原子性。多线程并发的原子性还需要通过锁去完成。
-原理 可见性实现原理  修改volatile修饰的变量的时候，强制将修改后的变量刷新到主存中 修改volatile修饰的变量后，其他线程对应的变量值失效要去主存中重新拉取  有序性实现原理 </description>
+      <description> volatile原理  Java版本：1.8  引子 在前面这个文章中总结了线程不安全的根本原因就是因为下面三个问题
+ 可见性 原子性 有序性  volatile可以保证可见性和有序性，还有单次读/写的原子性，但是不能保证原子性。多线程并发的原子性还需要通过锁去完成。
+volatile是怎么做到的 线程可见性:
+在前面我们知道线程之前不可见主要是因为线程A对于变量k的修改没有刷新到主存中就失去了CPU的使用权，线程B执行程序的时候需要变量k便会去主存中load进来，此时变量k不是最新的，随后线程A执行的时候将k值写进去，但是这时候变量k已经是脏数据了。
+使用volatile关键字修饰变量k，在多线程访问k的时候就可以避免这样的问题。
+原理如下：
+ 修改volatile修饰的变量的时候，强制将修改后的变量刷新到主存中 修改volatile修饰的变量后，其他线程对应的变量值失效要去主存中重新拉取  线程有序性:
+有序性的根本原因还是因为指令重排，所以使用volatile关键字直接告诉编译器和cpu在执行代码的时候禁止指令重排。
+技术实现细节 volatile这么好用，可以解决线程间可见性和有序性的问题。但是不是你说解决就解决的一定有相关的科学道理在背后，所以要看下volatile技术背后的科学道理。
+volatile是关键字，所以她的特性是由虚拟机帮我们完成
+关键词:
+ 内存屏障  “观察加入volatile关键字和没有加入volatile关键字时所生成的汇编代码发现，加入volatile关键字时，会多出一个lock前缀指令”
+　lock前缀指令实际上相当于一个内存屏障（也成内存栅栏），内存屏障会提供3个功能：
+　1）它确保指令重排序时不会把其后面的指令排到内存屏障之前的位置，也不会把前面的指令排到内存屏障的后面；即在执行到内存屏障这句指令时，在它前面的操作已经全部完成；
+　2）它会强制将对缓存的修改操作立即写入主存；
+　3）如果是写操作，它会导致其他CPU中对应的缓存行无效。
+使用volatile的场景  状态标记量(被多个线程[任务]访问，所以要最新的) 双重检查(double check)  </description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://jaswine.com/source/java/docs/features/java10/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://jaswine.com/source/java/docs/features/java10/</guid>
+      <description>Java10新特性 发布时间:2018年3月21日</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://jaswine.com/source/java/docs/features/java11/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://jaswine.com/source/java/docs/features/java11/</guid>
+      <description>Java11新特性 发布时间:2018年9月25日</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://jaswine.com/source/java/docs/features/java12/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://jaswine.com/source/java/docs/features/java12/</guid>
+      <description>Java12新特性 发布时间:2019年3月19日</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://jaswine.com/source/java/docs/features/java13/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://jaswine.com/source/java/docs/features/java13/</guid>
+      <description>Java13新特性 发布时间:2019年9月17日</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://jaswine.com/source/java/docs/features/java5/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://jaswine.com/source/java/docs/features/java5/</guid>
+      <description> Java5新特性 发布时间:2004年9月30日
+ 泛型* 枚举* 注解* 装箱拆箱 变长参数 foreach循环 静态导入 格式化 线程框架/数据结构 Arrays工具类/StringBuilder/instrument  </description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://jaswine.com/source/java/docs/features/java6/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://jaswine.com/source/java/docs/features/java6/</guid>
+      <description> Java6新特性 发布时间:2006年12月
+ JSR223脚本引擎 JSR199&amp;ndash;Java Compiler API JSR269&amp;ndash;Pluggable Annotation Processing API 支持JDBC4.0规范 JAX-WS 2.0规范  </description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://jaswine.com/source/java/docs/features/java7/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://jaswine.com/source/java/docs/features/java7/</guid>
+      <description> Java7新特性 发布时间:2011年7月28日
+ suppress异常(新语法) 捕获多个异常(新语法) try-with-resources(新语法) JSR341-Expression Language Specification(新规范) JSR203-NIO2(新规范) JSR292与InvokeDynamic 支持JDBC4.1规范 Path接口、DirectoryStream、Files、WatchService jcmd fork/join framework Java Mission Control  </description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://jaswine.com/source/java/docs/features/java8/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://jaswine.com/source/java/docs/features/java8/</guid>
+      <description> Java8新特性 发布时间:2014年3月18日
+ lamda表达式* 集合的stream操作* 提升HashMaps的性能 Date-Time Package java.lang and java.util Packages Concurrency  </description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://jaswine.com/source/java/docs/features/java9/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://jaswine.com/source/java/docs/features/java9/</guid>
+      <description>Java9新特性 发布时间:2017年9月21日</description>
     </item>
     
     <item>
@@ -136,7 +317,29 @@ volatile可以保证可见性和有序性，还有单次读/写的原子性，�
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>http://jaswine.com/source/java/docs/io/aio/base/</guid>
-      <description></description>
+      <description>异步非阻塞IO 在Java1.7的时候添加进来，是NIO的升级版，也叫做NIO2。提供了异步非阻塞的IO，基于时间和回调机制实现。</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://jaswine.com/source/java/docs/io/base/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://jaswine.com/source/java/docs/io/base/</guid>
+      <description> IO概述 @Java版本:1.8
+IO操作非常常见，无论是网络io，磁盘io还是内存io本质上的原理都是相同的。
+Java提供了IO操作的接口API，Java的IO操作只是对操作系统提供的API进行了封装，所有的工作都是操作系统完成的。
+IO过程(操作系统的IO过程) IO的过程很简单就是一进(read)一出(write)而已，但是IO是非常超时的操作(相对于CPU的运算)，所以在IO这一块程序上是丰富多彩。
+ 实现IO操作有三种方式，最简单的方式用户程序发出一个系统调用，内核翻译成一个设备驱动程序的调用过程，然后设备驱动器启动IO并在一个连续不断的循环中检查该设备，看该设备是否完成工作，当IO完成后，设备驱动程序返回结果，操作系统再将结果返回给用户程序，在这个过程中CPU一直被占用，CPU一直轮询设备到IO完成。
+第二种方式是设备驱动程序启动io后并且让该设备在完成io操作后发出一个中断。设备驱动程序在这个时候返回。操作系统阻塞调用者安排其他工作进行。当设备驱动程序检测到设备完成操作后，设备驱动程序发出一个中断通知操作完成。
+第三种方式是为IO使用一种特殊的芯片DMA(Direct Memory Access)，它可以控制在内存和某些控制器之间的位流，而不需要CPU的参与。CPU对DMA进行设置，说明需要传送的字节数、有关的设备和内存地址以及操作方向，接着启动DMA。当DMA完成操作，触发一个中断。
+《现代操作系统-第4版P18》
+ IO模型 IO有以下的模型,每个模型有自己的特点和原理
+ 同步阻塞模型
+ 同步非阻塞模型
+ 异步阻塞模型
+ 异步非阻塞模型
+  </description>
     </item>
     
     <item>
@@ -145,7 +348,9 @@ volatile可以保证可见性和有序性，还有单次读/写的原子性，�
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>http://jaswine.com/source/java/docs/io/bio/base/</guid>
-      <description></description>
+      <description>同步阻塞IO 类都在java.io包中，基于流模型实现。
+优点: - 代码简单直观
+缺点: - 效率，性能低</description>
     </item>
     
     <item>
@@ -154,7 +359,54 @@ volatile可以保证可见性和有序性，还有单次读/写的原子性，�
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>http://jaswine.com/source/java/docs/io/nio/base/</guid>
-      <description></description>
+      <description>同步非阻塞IO Java1.4引入，位于java.nio包中，同步非阻塞IO。
+优点: - 多路复用，性能高</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://jaswine.com/source/java/docs/item/annotation/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://jaswine.com/source/java/docs/item/annotation/</guid>
+      <description> Java中的注解 </description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://jaswine.com/source/java/docs/item/base_type/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://jaswine.com/source/java/docs/item/base_type/</guid>
+      <description>Java的8大基础类型及其包装类 8大基础类型及其包装类    基础类型 占用大小 包装类型     byte 8位 Byte   short 16位 Short   int 32位 Integer   long 64位 Long   float 32位 Float   double 64位 Double   boolean 2位 Boolean   char 16位 Character    区别  基础类型存储在栈上，包装类型(对象)存储在堆上  自动装箱&amp;amp;自动拆箱 Java SE5之后支持自动装箱和拆箱，代码：
+Integer a = 5; int b = a;  用javap对class文件进行反编译后发现，</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://jaswine.com/source/java/docs/item/compute/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://jaswine.com/source/java/docs/item/compute/</guid>
+      <description> Java中的逻辑运算 逻辑运算符  逻辑运算符     运算符 运算规则     &amp;amp;&amp;amp; T&amp;amp;&amp;amp;T=T T&amp;amp;&amp;amp;F=F    ｜｜ 逻辑或   ! 非     位运算符     运算符 意义     ^    ` `   &amp;amp;    &amp;gt;&amp;gt;    &amp;lt;&amp;lt;    &amp;gt;&amp;gt;&amp;gt;    &amp;lt;&amp;lt;&amp;lt;    ``     </description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://jaswine.com/source/java/docs/item/enum/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://jaswine.com/source/java/docs/item/enum/</guid>
+      <description> Java中的枚举 </description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://jaswine.com/source/java/docs/item/generic/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://jaswine.com/source/java/docs/item/generic/</guid>
+      <description> Java中的范型 </description>
     </item>
     
     <item>
@@ -165,13 +417,10 @@ volatile可以保证可见性和有序性，还有单次读/写的原子性，�
       <guid>http://jaswine.com/source/java/docs/lang/object/base/</guid>
       <description>Object源码  @Version: Oracle JDK 1.8
  Object是所有类的超类，默认继承。所以其中所有的方法和变量(不是private和final修饰的)都被继承。方法和变量有
- registerNatives()[p] getClass() hashCode() equals() clone toString notify() notifyAll() wait() finalize()  其中registerNatives()是private修饰的，其他都是被继承的。
+   方法 作用     registerNatives() [P]    getClass()    hashCode()    toString()    equals()    clone()    notify()    notifyAll()    wait()    finalize()     其中registerNatives()是private修饰的，其他都是被继承的。
 registerNatives() 他是一个native方法，作用就是注册本地方法，他是一个私有的方法，并且在类初始化的时候就会执行这个方法
 static { registerNatives(); }  会将native方法注册进来。hashcode(),clone()这些方法都是native修饰的，都需要registerNatives()注册进来。
-getClass() 返回当前对象的引用类Class&amp;lt;?&amp;gt;
-hashcode() 返回当前对象的hashcode()，每一个对象的hashcode都是不一样的
-equals() equals()的源代码如下
-public boolean equals(Object obj) { return (this == obj); }  本质上还是==</description>
+getClass() 返回当前对象的引用类Class&amp;lt;?</description>
     </item>
     
     <item>

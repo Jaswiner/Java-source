@@ -13,6 +13,21 @@
   </url>
   
   <url>
+    <loc>http://jaswine.com/source/java/docs/collection/list/copyonwritearraylist/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://jaswine.com/source/java/docs/collection/list/linkedlist/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://jaswine.com/source/java/docs/collection/list/vector/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>http://jaswine.com/source/java/docs/collection/map/base/</loc>
     <priority>0</priority>
   </url>
@@ -43,6 +58,16 @@
   </url>
   
   <url>
+    <loc>http://jaswine.com/source/java/docs/concurrent/base/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://jaswine.com/source/java/docs/concurrent/synchronized/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>http://jaswine.com/source/java/docs/concurrent/threadpool/</loc>
     <priority>0</priority>
   </url>
@@ -58,7 +83,57 @@
   </url>
   
   <url>
+    <loc>http://jaswine.com/source/java/docs/features/java10/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://jaswine.com/source/java/docs/features/java11/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://jaswine.com/source/java/docs/features/java12/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://jaswine.com/source/java/docs/features/java13/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://jaswine.com/source/java/docs/features/java5/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://jaswine.com/source/java/docs/features/java6/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://jaswine.com/source/java/docs/features/java7/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://jaswine.com/source/java/docs/features/java8/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://jaswine.com/source/java/docs/features/java9/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>http://jaswine.com/source/java/docs/io/aio/base/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://jaswine.com/source/java/docs/io/base/</loc>
     <priority>0</priority>
   </url>
   
@@ -69,6 +144,31 @@
   
   <url>
     <loc>http://jaswine.com/source/java/docs/io/nio/base/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://jaswine.com/source/java/docs/item/annotation/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://jaswine.com/source/java/docs/item/base_type/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://jaswine.com/source/java/docs/item/compute/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://jaswine.com/source/java/docs/item/enum/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://jaswine.com/source/java/docs/item/generic/</loc>
     <priority>0</priority>
   </url>
   
