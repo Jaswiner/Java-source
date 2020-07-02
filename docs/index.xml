@@ -12,15 +12,24 @@
     
     <item>
       <title></title>
+      <link>http://jaswine.com/source/java/docs/base/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://jaswine.com/source/java/docs/base/</guid>
+      <description> Java源代码阅读参考资源  🔗Java SE面试题  </description>
+    </item>
+    
+    <item>
+      <title></title>
       <link>http://jaswine.com/source/java/docs/collection/list/arraylist/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>http://jaswine.com/source/java/docs/collection/list/arraylist/</guid>
       <description>ArrayList源码分析 Java版本:1.8
-ArrayList底层数据结构 ArrayList的底层数据结构是数组。
+ ArrayList源码分析  ArrayList底层数据结构 ArrayList是如何动态扩容的 为什么ArrayList是线程不安全的 解决ArrayList线程不安全的方法   ArrayList底层数据结构 ArrayList的底层数据结构是数组。
  🔗数据结构-数组
  transient Object[] elementData; // non-private to simplify nested class access public ArrayList(int initialCapacity) { if (initialCapacity &amp;gt; 0) { this.elementData = new Object[initialCapacity]; } else if (initialCapacity == 0) { this.elementData = EMPTY_ELEMENTDATA; } else { throw new IllegalArgumentException(&amp;quot;Illegal Capacity: &amp;quot;+ initialCapacity); } }  ArrayList是如何动态扩容的 数组在声明的时候就是定长的，所以当数组满了的情况下要对数组进行扩容，因为数组在内存上分布是连续的，所以Java中动态扩容就是申请原来数组长度两倍的空间，然后将老数组的数据复制到新数组中。
- 源代码中扩容两倍使用的位移运算符，效率高，值得学习  private void grow(int minCapacity) { // overflow-conscious code int oldCapacity = elementData.length; int newCapacity = oldCapacity + (oldCapacity &amp;gt;&amp;gt; 1); if (newCapacity - minCapacity &amp;lt; 0) newCapacity = minCapacity; if (newCapacity - MAX_ARRAY_SIZE &amp;gt; 0) newCapacity = hugeCapacity(minCapacity); // minCapacity is usually close to size, so this is a win: elementData = Arrays.</description>
+ 源代码中扩容两倍使用的位移运算符，效率高，值得学习  private void grow(int minCapacity) { // overflow-conscious code int oldCapacity = elementData.</description>
     </item>
     
     <item>
@@ -165,7 +174,7 @@ Thread t = new Thread(){ public void run(){ System.out.println(&amp;quot;我是�
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>http://jaswine.com/source/java/docs/concurrent/synchronized/</guid>
-      <description>synchronized原理  Java版本: 1.8  synchronized是Java提供的关键字，他可以保证代码在多线程的情况下同步执行,可以解决应为并发带来的指令执行原子性的问题。他的功能都是由虚拟机完成的。
+      <description> synchronized原理  Java版本: 1.8   synchronized原理  synchronized  互斥 同步 JDK1.6对synchronized的优化  偏向锁     synchronized是Java提供的关键字，他可以保证代码在多线程的情况下同步执行,可以解决应为并发带来的指令执行原子性的问题。他的功能都是由虚拟机完成的。
 先说一个小例子来做比喻：
 我们到医院就医，很多人去看病，抽象成为代码如下：
 public class Hospital{ private Doctor doctor; public void treatment(Patient patient){ boolean canTreate = doctor.treatment(patient); if(canTreate){ System.out.println(&amp;quot;i can&amp;quot;); }else{ System.out.println(&amp;quot;change hospital&amp;quot;); } } }  这里极端一点，这个医院只有一个医生。然后医院提供治疗的方法，这个方法最后是医生去完成，然后根据医生的结果告知患者下一步怎么办。
@@ -173,7 +182,11 @@ public class Hospital{ private Doctor doctor; public void treatment(Patient pati
 synchronized synchronized 保持程序执行原子性是依靠了管程技术。和wait(),notify(),notifyall()一起使用。
 并发编程本质上就是在多个线程执行的时候保持线程互斥和同步。
 互斥 互斥的解决很简单，就是将共享变量及其操作统一封装。
-同步 协调</description>
+同步 协调
+JDK1.6对synchronized的优化 在JDK1.6对synchronized进行了优化，简单来说就是:
+ 使用如偏向锁、轻量级锁、自旋锁、适应性自旋锁、锁消除、锁粗化等技术来减少锁操作的开销  对象中锁的状态有4种,存储在对象头Java对象头-JVM中:
+无锁 》偏向锁 》自旋锁 》重量级锁  锁可以向上膨胀升级不可以向下降级:
+偏向锁 </description>
     </item>
     
     <item>
